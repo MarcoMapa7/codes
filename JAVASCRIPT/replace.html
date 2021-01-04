@@ -1,0 +1,8 @@
+ <input type="text" onkeyup="SubstituiVirgulaPorPonto(this)" />
+
+
+<script type="text/javascript">
+    function SubstituiVirgulaPorPonto(campo){
+        campo.value = campo.value.replace(/,/gi, ".");
+    }
+</script> 

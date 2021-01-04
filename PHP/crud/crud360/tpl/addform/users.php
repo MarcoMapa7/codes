@@ -1,0 +1,10 @@
+<div class='tpl col-md-3'>{(name)}</div>
+<div class='tpl col-md-3'>{(username)}</div>
+<div class='tpl col-md-3'>{(email)}</div>
+<div class='tpl col-md-3'>{(password)}</div>
+<div class='tpl col-md-4'>{(dob)}</div>
+<div class='tpl col-md-4'>{(department_id)}</div>
+<div class='tpl col-md-4'>{(status_id)}</div>
+<div class='tpl col-md-6'>{(address1)}</div>
+<div class='tpl col-md-6'>{(address2)}</div>
+<div class='tpl col-md-12'>{(summary)}</div>

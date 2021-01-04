@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title> Uploadify e ASP </title>
+	</head>
+	<body>
+		<!-- Preparações para o Uploadify -->
+		<script type="text/javascript" src="uploadify/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="uploadify/swfobject.js"></script>
+		<script type="text/javascript" src="uploadify/jquery.uploadify.v2.1.0.min.js"></script>
+<link rel="stylesheet" href="uploadify/styles/uploadify.css" type="text/css" media="all" title="all" charset="iso-8859-1" />
+
+
+		<!-- Form -->
+		<form id="novoArquivo" action="envio.asp" method="post">
+			<div id="fileNameList">
+				<pre id="fileInfo"></pre>
+				<a id="lnkExclui" href="#">Excluir</a>
+			</div>
+			<div id="fileUpload">
+				<input id="fileInput" name="fileInputs" type="file" />
+			</div>
+		</form>
+
+		<!-- A 'mágica' -->
+		<script type="text/javascript">
+
+			//--------------------------------------------------------------------------------------------
+			var respData; //Variável que armazena os dados de retorno de cada upload
+
+			//As variáveis a seguir são alimentadas na função onComplete
+			//e utilizadas na função onAllComplete
+			var numArquivos = 0;			//Indica quantos arquivos foram enviados
+			var nomeOriginal = new Array();	//Array com o NOME ORIGINAL de cada arquivo enviado
+			var nomeArquivo = new Array();	//Array com o NOME ALTERADO de cada arquivo enviado
+			var tamArquivo = new Array();	//Array com o TAMANHO de cada arquivo enviado
+			var statusArquivo = new Array();//Array com o STATUS DE ENVIO de cada arquivo
+
+
+
+			//--------------------------------------------------------------------------------------------
+			//Esta função será chamada no final de todo o envio
+			var onAllComplete = function(event, data) {
+
+				//Limpa o local para apresentar os dados
+				$('#fileInfo').html('');
+
+				
+				//Apresenta as informações de cada arquivo
+				for (var nf = 1; nf <= numArquivos; nf++) {
+					$('#fileInfo').html(
+						$('#fileInfo').html() + 
+						'<h2>Arquivo ' + nf + '</h2>' + 
+						'Status de envio: <b>' + statusArquivo[nf] + '</b><br />' +
+						'Nome original do arquivo: <b>' + nomeOriginal[nf] + '</b><br />' +
+						'Nome do arquivo gravado: <b>' + nomeArquivo[nf] + '</b><br />' +
+						'Tamano do arquivo: <b>' + tamArquivo[nf] + '</b><br />' +
+						'<a href="uploads/' + nomeArquivo[nf] + '">Link para o arquivo</a><br /><br />'
+					);
+				}
+
+				//Esconde o botão e apresenta os dados do arquivo
+				$('#fileNameList').show();
+				$('#fileUpload').hide();
+			}
+
+
+			//--------------------------------------------------------------------------------------------
+			//Esta função será chamada no final de CADA envio
+			var onComplete = function(event, queueID, fileObj, response, data) {
+
+				respData = $.parseJSON(response)
+
+				//Incrementa o número de arquivos
+				numArquivos++;
+
+				//Armazena o status de envio (certamente 'OK')
+				statusArquivo[numArquivos] = respData.result;
+
+				//Se não houve erro no evio, armazena os dados do arquivo nos arrays
+				if (respData.result != 'ERRO') {
+
+					nomeOriginal[numArquivos] =		respData.nomeOriginal;
+					nomeArquivo[numArquivos] =		respData.nomeArquivo;
+					tamArquivo[numArquivos] =		respData.tamArquivo;
+
+				}
+			}
+
+
+			//--------------------------------------------------------------------------------------------
+			//O link Excluir mostra novamente o botão de upload
+			$('#lnkExclui').click(function(e) {
+				$('#fileNameList').hide();
+				$('#fileUpload').show();
+				e.preventDefault;
+				return false;
+			});
+
+
+			//--------------------------------------------------------------------------------------------
+			//Preparação inicial
+			$(document).ready(function() {
+				//Configuração do uploadify
+$('#fileInput').uploadify({
+	'uploader'		: 'uploadify/uploadify.swf',		
+	'script'		: 'envio.asp',						
+	'cancelImg'		: 'uploadify/cancelUpload.png',		
+	'auto'			: true,								
+	'folder'		: '',								
+	'buttonText'	: 'Procurar',						
+	'multi'			: true,								
+	'onComplete'	: onComplete,						
+	'onAllComplete'	: onAllComplete,					
+	'onSelectOnce'	: function(event,data) {			
+						numArquivos = 0;				
+					  }
+				});
+
+				//Preparação para a primeira tela
+				$('#fileNameList').hide();
+				$('#fileUpload').show();
+			});
+		</script>
+
+
+
+	</body>
+</html>

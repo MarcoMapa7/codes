@@ -1,0 +1,21 @@
+{
+    "name": "xmtk/xmtk",
+    "description": "XML parser and writer which work with understandable hierarchical structures of arrays.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vasily Blinkov",
+            "email": "vasily.blinkov@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xmtk\\": "src/"
+        }
+    }
+}

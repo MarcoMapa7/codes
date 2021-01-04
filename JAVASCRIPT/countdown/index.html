@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Countdown With Timezone Example</title>
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .container { margin: 150px auto; }
+        h1 { text-align: center; margin-bottom: 2rem; color: #fff; }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Férias 2019</h1>
+        <div id="countdown" class="row justify-content-center align-items-center"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="js/countdown.jquery.js"></script>
+    <script>
+        const cd = new Date().getFullYear() + 1
+        $('#countdown').countdown({
+            year: 2019,
+			month: 8,
+			day: 2,
+			hour: 17,
+			minute:0,
+			second:0
+			
+        });		
+    </script>
+</body>
+</html>

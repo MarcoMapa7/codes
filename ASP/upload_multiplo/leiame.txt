@@ -1,0 +1,25 @@
+' ------------------------------------------------------------------------------
+'	Autor:		Leandro Ferreira
+'	Email:		leandrowferreira@gmail.com
+'	URL:		http://leandro.blog.br/?p=179
+'	Data:		25 de Agosto de 2011
+' ------------------------------------------------------------------------------
+
+' Upload múltiplo usando JQuery e ASP utiliza componentes gratuitos
+' para realizar o envio de arquivos sem post do documento, para um
+' servidor ASP (clássico). Os componentes usados são:
+'
+'  - JQuery (http://jquery.com/)
+'  - Uploadify (http://www.uploadify.com/)
+'  - Upload em ASP sem componentes (http://www.planet-source-code.com/vb/scripts/ShowCode.asp?txtCodeId=8525&lngWId=4)
+'
+'
+' Você tem permissão de usar indistintamente o pacote, inclusive alterando e
+' redistribuindo. Dúvidas serão respondidas e sugestões serão bem-vindas
+'
+'
+' PARA MAIS INFORMAÇÕES DE COMO INSTALAR E USAR, VEJA O POST NO MEU BLOG:
+'
+'	http://leandro.blog.br/?p=179
+'
+
